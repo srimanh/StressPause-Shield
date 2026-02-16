@@ -5,6 +5,9 @@ import com.stresspause.dto.response.CategoryBreakdownResponse;
 import com.stresspause.dto.response.FinancialSummaryResponse;
 import com.stresspause.dto.response.MonthlyBreakdownResponse;
 import com.stresspause.service.AnalyticsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +23,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/analytics")
 @RequiredArgsConstructor
+@Tag(name = "Analytics", description = "Endpoints for financial insights and summaries")
+@SecurityRequirement(name = "Bearer Authentication")
 public class AnalyticsController {
 
     private final AnalyticsService analyticsService;
 
     @GetMapping("/summary")
+    @Operation(summary = "Get financial summary", description = "Calculates total income, expense, and net balance for the user")
     public ResponseEntity<ApiResponse<FinancialSummaryResponse>> getSummary() {
         log.info("REST request to fetch financial summary");
         return ResponseEntity.ok(ApiResponse.success(
@@ -33,6 +39,7 @@ public class AnalyticsController {
     }
 
     @GetMapping("/monthly")
+    @Operation(summary = "Get monthly breakdown", description = "Retrieves income and expense totals grouped by month for a given year")
     public ResponseEntity<ApiResponse<List<MonthlyBreakdownResponse>>> getMonthlyBreakdown(
             @RequestParam(required = false) Integer year) {
         log.info("REST request to fetch monthly breakdown for year: {}", year);
@@ -43,6 +50,7 @@ public class AnalyticsController {
     }
 
     @GetMapping("/categories")
+    @Operation(summary = "Get category breakdown", description = "Retrieves a breakdown of expenses by category")
     public ResponseEntity<ApiResponse<List<CategoryBreakdownResponse>>> getCategoryBreakdown() {
         log.info("REST request to fetch category-wise expense breakdown");
         return ResponseEntity.ok(ApiResponse.success(

@@ -31,6 +31,21 @@ mvn spring-boot:run
 
 The server will start on `http://localhost:8080`.
 
+## Running with Docker
+
+You can run the entire stack (App + PostgreSQL) using Docker Compose:
+
+```bash
+docker-compose up --build
+```
+
+### Environment Variables
+The following environment variables can be configured:
+- `SPRING_PROFILES_ACTIVE`: Set to `prod` for production settings (default: `dev`).
+- `DB_USERNAME`: Database username (default: `postgres`).
+- `DB_PASSWORD`: Database password (default: `postgres`).
+- `JWT_SECRET`: Secret key for JWT signing.
+
 ### Health Check
 Verify the setup by hitting:
 `GET http://localhost:8080/api/health`

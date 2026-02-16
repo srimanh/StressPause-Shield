@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate # Use validate for production
+    show-sql: false
+
+logging:
+  level:
+    root: INFO
+    com.stresspause: INFO
+    org.springframework.web: INFO
+    org.hibernate.SQL: ERROR
+
+# Disable Swagger in production
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false

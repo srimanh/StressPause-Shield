@@ -66,3 +66,7 @@ If stress score > threshold →
 | Versioning  | Git & GitHub |
 
 ---
+
+## 👨‍💻 Author
+
+Built as a fintech backend prototype to explore proactive risk modeling in digital lending systems.

@@ -30,9 +30,14 @@ spring:
 logging:
   level:
     root: INFO
-    com.antigravity: DEBUG
+    com.stresspause: DEBUG
     org.springframework.web: INFO
     org.hibernate.SQL: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/stresspause.log
 
 management:
   endpoints:

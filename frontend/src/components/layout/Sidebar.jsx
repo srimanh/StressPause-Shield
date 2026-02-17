@@ -9,8 +9,18 @@ import {
     Shield
 } from 'lucide-react';
 import { cn } from '@utils/cn';
+import { useAuth } from '@context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+    const { logout } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
+
     const menuItems = [
         { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
         { icon: ArrowLeftRight, label: 'Transactions', path: '/transactions' },
@@ -60,7 +70,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
                 {/* User / Logout Section */}
                 <div className="p-4 border-t border-slate-50 dark:border-slate-800">
-                    <button className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-danger/5 hover:text-danger font-medium transition-standard group">
+                    <button
+                        onClick={handleLogout}
+                        className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-danger/5 hover:text-danger font-medium transition-standard group"
+                    >
                         <LogOut size={22} className="group-hover:text-danger" />
                         <span>Logout</span>
                     </button>
